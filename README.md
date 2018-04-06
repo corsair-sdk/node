@@ -1,94 +1,61 @@
-# node-cue-sdk-2
+# corsair-sdk
 
-This is a fork of the great package, node-cue-sdk, by Yannicked. Please check his version out before continuing!
+> This is a fork of [`cue-sdk-node2`](https://gitlab.com/luxdvie/node-cue-sdk-2), with support for NodeJS 9.0
 
-https://www.npmjs.com/package/cue-sdk-node
+`corsair-sdk` enables you to interact with the Corsair CUE SDK in NodeJS
 
-I have made only slight modifications to his code to fit my needs.
+## [Documentation](https://github.com/Yannicked/node-cue-sdk/wiki/Documentation)
 
-## Modifications
+---
 
-* Updated to version 2.18.127 of the CUE SDK
-* Manually include SDK files, point to version 2015, don't download the ZIP
-* Include support for "releasing" and "renewing" they keyboard. This allows CUE to take over after you're done, if you have a single node process running. 
+### Asynchonous
 
+```ts
+import CueSDK from 'corsair-sdk'
+const cue = new CueSDK()
 
-Original Readme Below:
+cue.set('A', 255, 255, 0, function() {
+  console.log('Lights set!')
+})
 
----------------------------------------
-
-### Node.js Corsair Cue SDK wrapper
-`node-cue-sdk` is a Node.js addon for loading and and using the Cue SDK in
-pure JavaScript.
-
-### <a href="https://github.com/Yannicked/node-cue-sdk/wiki/Documentation">Documentation</a>
-
-Example with asynchonous functions
--------
-
-``` js
-var CueSDK = require('node-cue-sdk');
-
-var cue = new CueSDK.CueSDK();
-
-// The CueSDK.set function can also work asynchonously, just add a function to the arguments and it'll be asynchonous
-cue.set('A', 255, 255, 0, function() { // This is the function which get called after completion
-    console.log('Lights set!');
-});
-
-cue.set([
-    ['A', 255, 0, 0],
-    ['S', 0 , 255, 0],
-    ['D', 0, 0, 255]
-], function() { // This is the function which get called after completion
-    console.log('Three lights set!');
-}); // Set A to red, S to green, and D to blue
-
-// fade from black [0, 0, 0] to cyan [0, 255, 255] in 1000ms
-cue.fade('Logo', [0, 0, 0], [0, 255, 255], 1000, function() {
-    console.log('This will run when the fading has completed!');
-});
-
+setTimeout(() => {
+  cue.set([['A', 255, 0, 0], ['S', 0, 255, 0], ['D', 0, 0, 255]], function() {
+    console.log('Three lights set!')
+  })
+}, 3000)
 ```
-***
-Example with synchonous functions
--------
 
-``` js
-var CueSDK = require('node-cue-sdk');
+---
 
-var cue = new CueSDK.CueSDK();
+### Synchonous
 
-cue.set('W', 255, 255, 255); // Set the W key to #FFFFFF aka white
+```ts
+import CueSDK from 'corsair-sdk'
+const cue = new CueSDK()
+
+cue.set('W', 255, 255, 255) // Set the W key to #FFFFFF aka white
 
 // You can set multiple colors at the time!
-cue.set([
-    ['A', 255, 0, 0],
-    ['S', 0 , 255, 0],
-    ['D', 0, 0, 255]
-]); // Set A to red, S to green, and D to blue
+cue.set([['A', 255, 0, 0], ['S', 0, 255, 0], ['D', 0, 0, 255]])
 
 // Special keys/lights are also supported!
-cue.set('Logo', 255, 255, 0); // Make the Corsair logo yellow
+cue.set('Logo', 255, 255, 0)
 
 // To turn off all leds
-cue.clear();
-
+cue.clear()
 ```
 
-Requirements
-------------
+## Requirements
 
- * Windows (Linux and Mac OSX are currently not supported by the CueSDK)
- * Node.js ```5.0.0``` or higher
+* Windows (Linux and Mac OSX are currently not supported by the CueSDK)
+* Node.js `5.0.0` or higher
 
-Installation
-------------
+## Installation
 
 Make sure you've installed all the [necessary build
 tools](https://github.com/TooTallNate/node-gyp#installation),
 then run this command in the source directory:
 
-``` bash
-$ npm install cue-sdk-node
+```bash
+$ npm install corsair-sdk
 ```
