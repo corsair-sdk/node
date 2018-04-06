@@ -1,31 +1,10 @@
 # corsair-sdk
 
+`corsair-sdk` enables you to interact with the Corsair CUE SDK, in NodeJS.
+
 > This is a fork of [`cue-sdk-node2`](https://gitlab.com/luxdvie/node-cue-sdk-2), with support for NodeJS 9.0
 
-`corsair-sdk` enables you to interact with the Corsair CUE SDK in NodeJS
-
 ## [Documentation](https://github.com/Yannicked/node-cue-sdk/wiki/Documentation)
-
----
-
-### Asynchonous
-
-```ts
-import CueSDK from 'corsair-sdk'
-const cue = new CueSDK()
-
-cue.set('A', 255, 255, 0, function() {
-  console.log('Lights set!')
-})
-
-setTimeout(() => {
-  cue.set([['A', 255, 0, 0], ['S', 0, 255, 0], ['D', 0, 0, 255]], function() {
-    console.log('Three lights set!')
-  })
-}, 3000)
-```
-
----
 
 ### Synchonous
 
@@ -33,7 +12,8 @@ setTimeout(() => {
 import CueSDK from 'corsair-sdk'
 const cue = new CueSDK()
 
-cue.set('W', 255, 255, 255) // Set the W key to #FFFFFF aka white
+// Set single color
+cue.set('W', 255, 255, 255)
 
 // You can set multiple colors at the time!
 cue.set([['A', 255, 0, 0], ['S', 0, 255, 0], ['D', 0, 0, 255]])
@@ -43,6 +23,25 @@ cue.set('Logo', 255, 255, 0)
 
 // To turn off all leds
 cue.clear()
+```
+
+---
+
+### Asynchonous
+
+```ts
+import CueSDK from 'corsair-sdk'
+const cue = new CueSDK()
+
+// Set single color
+cue.set('A', 255, 255, 0, () => {
+  console.log('Lights set!')
+})
+
+// Set multiple colors
+cue.set([['A', 255, 0, 0], ['S', 0, 255, 0], ['D', 0, 0, 255]], () => {
+  console.log('Three lights set!')
+})
 ```
 
 ## Requirements

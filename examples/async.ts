@@ -9,4 +9,5 @@ setTimeout(() => {
   cue.set([['A', 255, 0, 0], ['S', 0, 255, 0], ['D', 0, 0, 255]], function() {
     console.log('Three lights set!')
   })
+  setTimeout(() => {}, 5000)
 }, 3000)
