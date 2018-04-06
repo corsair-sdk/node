@@ -2,7 +2,7 @@
   "name": "corsair-sdk",
   "version": "1.1.0",
   "description": "Corsair Cue SDK wrapper for node.js",
-  "main": "src/bundle.js",
+  "main": "src/index.js",
   "author": "Sam Denty (forked from Yannick de Jong)",
   "license": "ISC",
   "engines": {
