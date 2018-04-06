@@ -4,9 +4,11 @@
 
 > This is a fork of [`cue-sdk-node2`](https://gitlab.com/luxdvie/node-cue-sdk-2), with support for NodeJS 9.0
 
-## [Documentation](https://github.com/Yannicked/node-cue-sdk/wiki/Documentation)
+## Usage
 
-### Synchonous
+Find the [Documentation](https://github.com/Yannicked/node-cue-sdk/wiki/Documentation) over at the Wiki
+
+### Synchronous
 
 ```ts
 import CueSDK from 'corsair-sdk'
@@ -27,7 +29,7 @@ cue.clear()
 
 ---
 
-### Asynchonous
+### Asynchronous
 
 ```ts
 import CueSDK from 'corsair-sdk'
@@ -54,7 +56,3 @@ cue.set([['A', 255, 0, 0], ['S', 0, 255, 0], ['D', 0, 0, 255]], () => {
 Make sure you've installed all the [necessary build
 tools](https://github.com/TooTallNate/node-gyp#installation),
 then run this command in the source directory:
-
-```bash
-$ npm install corsair-sdk
-```
